@@ -1,34 +1,32 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% ¹¦ÄÜ£º1£©¶Ô´²²ã²»Í¬Î»ÖÃ²îÑ¹Ê±ĞòĞÅºÅµÄÔ­Ê¼ĞÅºÅ£¬Í³¼ÆĞÅÏ¢¼ÆËã£¨Æ½¾ùÖµ¡¢±ê×¼²î¡¢Æ«¶È¡¢·å¶È£©¡¢ÆµÆ×·ÖÎö¡¢¹¦ÂÊÆ×ÃÜ¶È¡¢Ğ¡²¨·ÖÎö¡¢ÄÜÁ¿·Ö²¼£¬Ïà¹ØÏµÊıµÈ¼ÆËã
-%%% ¹¤¿ö£ºK:\SimulationResults\UgpressureFB\UgpressureFBpost20180129
-%%% ×¢Òâ£ºÖØĞÂÌáÈ¡µÄ·ÂÕæÊı¾İ
-%%% ËÎ¼ÓÁú
-%%% ÈÕÆÚ£º2018Äê02ÔÂ26ÈÕ
+%%% åŠŸèƒ½ï¼š1ï¼‰å¯¹åºŠå±‚ä¸åŒä½ç½®å·®å‹æ—¶åºä¿¡å·çš„åŸå§‹ä¿¡å·ï¼Œç»Ÿè®¡ä¿¡æ¯è®¡ç®—ï¼ˆå¹³å‡å€¼ã€æ ‡å‡†å·®ã€ååº¦ã€å³°åº¦ï¼‰ã€é¢‘è°±åˆ†æã€åŠŸç‡è°±å¯†åº¦ã€å°æ³¢åˆ†æã€èƒ½é‡åˆ†å¸ƒï¼Œç›¸å…³ç³»æ•°ç­‰è®¡ç®—
+%%% å·¥å†µï¼šK:\SimulationResults\UgpressureFB\UgpressureFBpost20180129
+%%% æ³¨æ„ï¼šé‡æ–°æå–çš„ä»¿çœŸæ•°æ®
+%%% å®‹åŠ é¾™
+%%% æ—¥æœŸï¼š2018å¹´02æœˆ26æ—¥
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 clear all; close all; clc;
 Path='K:\SimulationResults\UgpressureFB\UgpressureFBpost20180129';
 
-
-
-%% ÓÃÓÚÈ·¶¨Òª½øĞĞºÎÖÖ¼ÆËã
+%% ç”¨äºç¡®å®šè¦è¿›è¡Œä½•ç§è®¡ç®—
 for i0=1:1,
-    Output_Original_Signal=0; % Ô­Ê¼ĞÅºÅ
-    Output_Statistical_Information=0; % Í³¼ÆĞÅÏ¢¼ÆËã£¬°üÀ¨Æ½¾ùÖµ£¬±ê×¼²î£¬Æ«¶È£¬·å¶È
-    Output_Frequency_Analysis=0; % ÆµÆ×·ÖÎö
-    Output_Power_Spectrum_Density_Analysis=1; % ¹¦ÂÊÆ×ÃÜ¶È·ÖÎö
-    PSD_Method=1;%Ëù²ÉÓÃµÄ·½·¨£»%1-PSD_WELCH·½·¨£»%2-¸÷ÖÖ¹¦ÂÊÆ×¼ÆËã·½·¨¶Ô±È
-    Output_Wavelet_Analysis=0;% Ğ¡²¨·ÖÎö
-    Output_AutoCorrelation_Function =0;% ×ÔÏà¹Øº¯Êı¼ÆËã
+    Output_Original_Signal=0; % åŸå§‹ä¿¡å·
+    Output_Statistical_Information=0; % ç»Ÿè®¡ä¿¡æ¯è®¡ç®—ï¼ŒåŒ…æ‹¬å¹³å‡å€¼ï¼Œæ ‡å‡†å·®ï¼Œååº¦ï¼Œå³°åº¦
+    Output_Frequency_Analysis=0; % é¢‘è°±åˆ†æ
+    Output_Power_Spectrum_Density_Analysis=1; % åŠŸç‡è°±å¯†åº¦åˆ†æ
+    PSD_Method=1;%æ‰€é‡‡ç”¨çš„æ–¹æ³•ï¼›%1-PSD_WELCHæ–¹æ³•ï¼›%2-å„ç§åŠŸç‡è°±è®¡ç®—æ–¹æ³•å¯¹æ¯”
+    Output_Wavelet_Analysis=0;% å°æ³¢åˆ†æ
+    Output_AutoCorrelation_Function =0;% è‡ªç›¸å…³å‡½æ•°è®¡ç®—
 end
 
 %%
-count=0; %ÓÃÓÚÍ³¼Æ¼ÆËãµÄ¹¤¿ö¸öÊı
-Excel_title=cell(21,1); %ÓÃÓÚ´æ·Å¹¤¿öµÄÃû³Æ
-Bubble2_sum=[]; %ÓÃÓÚ»ã×ÜÍ³¼Æ¼ÆËã½á¹û
-Wavelet_Energy_Distribution_sum=[]; %ÓÃÓÚ»ã×ÜĞ¡²¨ÄÜÁ¿¼ÆËã½á¹û
+count=0; %ç”¨äºç»Ÿè®¡è®¡ç®—çš„å·¥å†µä¸ªæ•°
+Excel_title=cell(21,1); %ç”¨äºå­˜æ”¾å·¥å†µçš„åç§°
+Bubble2_sum=[]; %ç”¨äºæ±‡æ€»ç»Ÿè®¡è®¡ç®—ç»“æœ
+Wavelet_Energy_Distribution_sum=[]; %ç”¨äºæ±‡æ€»å°æ³¢èƒ½é‡è®¡ç®—ç»“æœ
 
-for i=1:1, %¶ÔÓ¦21¸ö¹¤¿ö
+for i=1:1, %å¯¹åº”21ä¸ªå·¥å†µ
     %*********************1.0MPa****************************
     if i==1,
         name1='p10barug025';
@@ -76,88 +74,88 @@ for i=1:1, %¶ÔÓ¦21¸ö¹¤¿ö
         name1='ug140p1bar';
     end
     
-    loadpath_mat=strcat(Path,'\','postÊı¾İ','\',name1,'-PgLocals.mat'); %'.mat'ÎÄ¼şµÄÍêÕûÂ·¾¶
-    load(loadpath_mat);%ÔØÈë¡°.mat¡±ÎÄ¼şĞÅÏ¢
-    DpressureVsTime=PgLocalsvsTime; %DPbedvsTimeÊı¾İĞÅÏ¢¸³Öµ¸øDpressureVsTime±äÁ¿
+    loadpath_mat=strcat(Path,'\','postæ•°æ®','\',name1,'-PgLocals.mat'); %'.mat'æ–‡ä»¶çš„å®Œæ•´è·¯å¾„
+    load(loadpath_mat);%è½½å…¥â€œ.matâ€æ–‡ä»¶ä¿¡æ¯
+    DpressureVsTime=PgLocalsvsTime; %DPbedvsTimeæ•°æ®ä¿¡æ¯èµ‹å€¼ç»™DpressureVsTimeå˜é‡
     
-    %% ÔËĞĞÖĞĞèÒªĞŞ¸ÄµÄ²¿·Ö
+    %% è¿è¡Œä¸­éœ€è¦ä¿®æ”¹çš„éƒ¨åˆ†
     %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    numi=10; %µÚ2-10ÁĞÎª²îÑ¹ĞÅºÅÊı¾İ,¹²9×é£¬·Ö9´ÎÔËĞĞ£¬ÊÖ¶¯ĞŞ¸Ä£¬·Ö±ğÎª2,3,4,5,6,7,8,9,10
+    numi=10; %ç¬¬2-10åˆ—ä¸ºå·®å‹ä¿¡å·æ•°æ®,å…±9ç»„ï¼Œåˆ†9æ¬¡è¿è¡Œï¼Œæ‰‹åŠ¨ä¿®æ”¹ï¼Œåˆ†åˆ«ä¸º2,3,4,5,6,7,8,9,10
     
-    Bubble1=DpressureVsTime(:,1);  %µÚ1ÁĞÎªÊ±¼äÊı¾İ
-    Bubble20=DpressureVsTime(:,numi);  %²îÑ¹ĞÅºÅÊı¾İ,¹²9×é£¬·Ö9´ÎÔËĞĞ£¬ÊÖ¶¯ĞŞ¸Ä£¬·Ö±ğÎª2,3,4,5,6,7,8,9,10
-    name11=strcat(name1,'_',num2str(numi)); %±£´æµÄÎÄ¼şÃû×Ö
+    Bubble1=DpressureVsTime(:,1);  %ç¬¬1åˆ—ä¸ºæ—¶é—´æ•°æ®
+    Bubble20=DpressureVsTime(:,numi);  %å·®å‹ä¿¡å·æ•°æ®,å…±9ç»„ï¼Œåˆ†9æ¬¡è¿è¡Œï¼Œæ‰‹åŠ¨ä¿®æ”¹ï¼Œåˆ†åˆ«ä¸º2,3,4,5,6,7,8,9,10
+    name11=strcat(name1,'_',num2str(numi)); %ä¿å­˜çš„æ–‡ä»¶åå­—
     
-    Path2=strcat('K:\SimulationResults\UgpressureFB\UgpressureFBpost20180129','\¼ÆËã½á¹û','\Ñ¹Á¦²¨¶¯');
-    mkdir(Path2,num2str(numi)); %ÓÃÓÚ´æ·ÅÔÚ21¸ö¹¤¿öÖĞÏàÍ¬Î»ÖÃ´¦µÄ¼ÆËã½á¹ûÊı¾İ
+    Path2=strcat('K:\SimulationResults\UgpressureFB\UgpressureFBpost20180129','\è®¡ç®—ç»“æœ','\å‹åŠ›æ³¢åŠ¨');
+    mkdir(Path2,num2str(numi)); %ç”¨äºå­˜æ”¾åœ¨21ä¸ªå·¥å†µä¸­ç›¸åŒä½ç½®å¤„çš„è®¡ç®—ç»“æœæ•°æ®
     Path3=strcat(Path2,'\',num2str(numi));
-    mkdir(Path3,'²¨¶¯Í¼Ïñ'); %ÔÚPath3ÎÄ¼ş¼ĞÏÂ´´½¨ÃûÎª¡°²¨¶¯Í¼Ïñ¡±ÎÄ¼ş¼Ğ
+    mkdir(Path3,'æ³¢åŠ¨å›¾åƒ'); %åœ¨Path3æ–‡ä»¶å¤¹ä¸‹åˆ›å»ºåä¸ºâ€œæ³¢åŠ¨å›¾åƒâ€æ–‡ä»¶å¤¹
     
-    Bubble21=Bubble20-mean(Bubble20); %²îÑ¹ĞÅºÅÊı¾İ,È¥³ıÆ½¾ùÖµºóµÄÊı¾İ
+    Bubble21=Bubble20-mean(Bubble20); %å·®å‹ä¿¡å·æ•°æ®,å»é™¤å¹³å‡å€¼åçš„æ•°æ®
     %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    %ÓÃÓÚ¶¨Òå¼ÆËã½á¹ûµÄ±£´æÂ·¾¶
+    %ç”¨äºå®šä¹‰è®¡ç®—ç»“æœçš„ä¿å­˜è·¯å¾„
     for i1=1,
-        Excel_Output_Path_Image=strcat(Path2,'\',num2str(numi),'\','²¨¶¯Í¼Ïñ\');%¶¨Òå±£´æÔ­Ê¼ĞÅºÅÍ¼ÏñÂ·¾¶
-        Excel_outputpath_Original_Signal_data=strcat(Path2,'\',num2str(numi),'\','Ô­Ê¼ĞÅºÅĞÅÏ¢»ã×Ü.xlsx');%¶¨Òå¹¤¿öµÄ¼ÆËãÍ³¼ÆÊı¾İÂ·¾¶
-        Excel_outputpath_Statistical_Information_data=strcat(Path2,'\',num2str(numi),'\','Í³¼ÆĞÅÏ¢»ã×Ü.xlsx');%¶¨Òå¹¤¿öµÄ¼ÆËãÍ³¼ÆÊı¾İÂ·¾¶
-        Excel_outputpath_Frequency_Analysis_data=strcat(Path2,'\',num2str(numi),'\','ĞÅºÅÆµÆ×»ã×Ü.xlsx');
-        Excel_outputpath_Output_Power_Spectrum_Density_Analysis_data=strcat(Path2,'\',num2str(numi),'\','ĞÅºÅ¹¦ÂÊÆ×»ã×Ü.xlsx');
-        Excel_Outputpath_Wavelet_Sum_data=strcat(Path2,'\',num2str(numi),'\','Ğ¡²¨±ä»»¸÷Æµ¶Î·Ö²¼Çé¿ö»ã×Ü.xlsx');%¶¨Òå±£´æĞ¡²¨±ä»»ÄÜÁ¿·Ö²¼Êı¾İÂ·¾¶
-        Excel_outputpath_Wavelet_Analysis_data=strcat(Path2,'\',num2str(numi),'\','Ğ¡²¨±ä»»ÄÜÁ¿·Ö²¼»ã×Ü.xlsx');%¶¨Òå±£´æĞ¡²¨±ä»»ÄÜÁ¿·Ö²¼Êı¾İÂ·¾¶
-        Excel_outputpath_AutoCorrelation_Function_data=strcat(Path2,'\',num2str(numi),'\','×ÔÏà¹Øº¯Êı»ã×Ü.xlsx');%¶¨Òå±£´æĞ¡²¨±ä»»ÄÜÁ¿·Ö²¼Êı¾İÂ·¾¶
+        Excel_Output_Path_Image=strcat(Path2,'\',num2str(numi),'\','æ³¢åŠ¨å›¾åƒ\');%å®šä¹‰ä¿å­˜åŸå§‹ä¿¡å·å›¾åƒè·¯å¾„
+        Excel_outputpath_Original_Signal_data=strcat(Path2,'\',num2str(numi),'\','åŸå§‹ä¿¡å·ä¿¡æ¯æ±‡æ€».xlsx');%å®šä¹‰å·¥å†µçš„è®¡ç®—ç»Ÿè®¡æ•°æ®è·¯å¾„
+        Excel_outputpath_Statistical_Information_data=strcat(Path2,'\',num2str(numi),'\','ç»Ÿè®¡ä¿¡æ¯æ±‡æ€».xlsx');%å®šä¹‰å·¥å†µçš„è®¡ç®—ç»Ÿè®¡æ•°æ®è·¯å¾„
+        Excel_outputpath_Frequency_Analysis_data=strcat(Path2,'\',num2str(numi),'\','ä¿¡å·é¢‘è°±æ±‡æ€».xlsx');
+        Excel_outputpath_Output_Power_Spectrum_Density_Analysis_data=strcat(Path2,'\',num2str(numi),'\','ä¿¡å·åŠŸç‡è°±æ±‡æ€».xlsx');
+        Excel_Outputpath_Wavelet_Sum_data=strcat(Path2,'\',num2str(numi),'\','å°æ³¢å˜æ¢å„é¢‘æ®µåˆ†å¸ƒæƒ…å†µæ±‡æ€».xlsx');%å®šä¹‰ä¿å­˜å°æ³¢å˜æ¢èƒ½é‡åˆ†å¸ƒæ•°æ®è·¯å¾„
+        Excel_outputpath_Wavelet_Analysis_data=strcat(Path2,'\',num2str(numi),'\','å°æ³¢å˜æ¢èƒ½é‡åˆ†å¸ƒæ±‡æ€».xlsx');%å®šä¹‰ä¿å­˜å°æ³¢å˜æ¢èƒ½é‡åˆ†å¸ƒæ•°æ®è·¯å¾„
+        Excel_outputpath_AutoCorrelation_Function_data=strcat(Path2,'\',num2str(numi),'\','è‡ªç›¸å…³å‡½æ•°æ±‡æ€».xlsx');%å®šä¹‰ä¿å­˜å°æ³¢å˜æ¢èƒ½é‡åˆ†å¸ƒæ•°æ®è·¯å¾„
     end
     
-    Fs=50;%²ÉÑùÆµÂÊÎª50Hz
+    Fs=50;%é‡‡æ ·é¢‘ç‡ä¸º50Hz
     N=251;
-    xn=Bubble21;%È¥³ı²îÑ¹ºóµÄ·ùÖµÊı¾İ¸³Öµ¸øxn
-    dt=1/Fs;%²ÉÑùÊ±¼ä¼ä¸ô
+    xn=Bubble21;%å»é™¤å·®å‹åçš„å¹…å€¼æ•°æ®èµ‹å€¼ç»™xn
+    dt=1/Fs;%é‡‡æ ·æ—¶é—´é—´éš”
     n=0:N-1;
-    t=n*dt;%²ÉÑùÊ±¼ä·Ö²¼
+    t=n*dt;%é‡‡æ ·æ—¶é—´åˆ†å¸ƒ
     
-    %Ô­Ê¼ĞÅºÅ
+    %åŸå§‹ä¿¡å·
     if  Output_Original_Signal==1;
-        Original_data=[Bubble1,Bubble20,Bubble21];%ÓÃÓÚ´æ·ÅÊ±¼äÊı¾İ£¬Ô­Ê¼·ùÖµÊı¾İ£¬È¥³ı²îÑ¹ºóµÄ·ùÖµÊı¾İ
-        m1={'Ê±¼ä','Ô­Ê¼·ùÖµ','È¥³ı¾ùÖµºó·ùÖµ'};
+        Original_data=[Bubble1,Bubble20,Bubble21];%ç”¨äºå­˜æ”¾æ—¶é—´æ•°æ®ï¼ŒåŸå§‹å¹…å€¼æ•°æ®ï¼Œå»é™¤å·®å‹åçš„å¹…å€¼æ•°æ®
+        m1={'æ—¶é—´','åŸå§‹å¹…å€¼','å»é™¤å‡å€¼åå¹…å€¼'};
         
         xlswrite(Excel_outputpath_Original_Signal_data,m1,name11,'A1');
-        disp(strcat('Excel_outputpath_Original_Signal_data_Excelheader:',name11)); %ExcelÊı¾İ±íµÄ±íÍ·ÊäÈëÍê±Ï
+        disp(strcat('Excel_outputpath_Original_Signal_data_Excelheader:',name11)); %Excelæ•°æ®è¡¨çš„è¡¨å¤´è¾“å…¥å®Œæ¯•
         
         xlswrite(Excel_outputpath_Original_Signal_data,Original_data,name11,'A2');
-        disp(strcat('Excel_outputpath_Original_Signal_data_Exceldata:',name11)); %ExcelÊı¾İ±íµÄËùÓĞÊı¾İÊäÈëÍê±Ï
+        disp(strcat('Excel_outputpath_Original_Signal_data_Exceldata:',name11)); %Excelæ•°æ®è¡¨çš„æ‰€æœ‰æ•°æ®è¾“å…¥å®Œæ¯•
         
         %         figure,
         %         plot(t,xn,'LineWidth',2);
         %         %axis([0,5,-1000,1500]);
-        %         title('Ô­Ê¼ĞÅºÅ¡ª¡ªÊ±ÓòÍ¼');
-        %         xlabel('Ê±¼ä/s');
-        %         ylabel('·ùÖµ');
+        %         title('åŸå§‹ä¿¡å·â€”â€”æ—¶åŸŸå›¾');
+        %         xlabel('æ—¶é—´/s');
+        %         ylabel('å¹…å€¼');
         %         grid on;
-        %         %print(gcf,'-dtiff',[Excel_Output_Path_Image,'Original_Signal_Image',name1,'.tiff'])   %±£´ætiff¸ñÊ½µÄÍ¼Æ¬µ½Ö¸¶¨Â·¾¶
+        %         %print(gcf,'-dtiff',[Excel_Output_Path_Image,'Original_Signal_Image',name1,'.tiff'])   %ä¿å­˜tiffæ ¼å¼çš„å›¾ç‰‡åˆ°æŒ‡å®šè·¯å¾„
         %         close all;
     end
     
-    %Í³¼Æ·ÖÎö£¬¼ÆËãÆ½¾ùÖµ£¬±ê×¼²î£¬·å¶È£¬Æ«¶È
+    %ç»Ÿè®¡åˆ†æï¼Œè®¡ç®—å¹³å‡å€¼ï¼Œæ ‡å‡†å·®ï¼Œå³°åº¦ï¼Œååº¦
     if Output_Statistical_Information==1,
         Bubble20_mean=mean(Bubble20);
         Bubble20_length=length(Bubble20);
         
-        %¼ÆËã±ê×¼²î
-        Bubble20_std=std(Bubble20);%±ê×¼Æ«²î
+        %è®¡ç®—æ ‡å‡†å·®
+        Bubble20_std=std(Bubble20);%æ ‡å‡†åå·®
         
-        %¼ÆËãÆ½¾ù¾ø¶ÔÆ«²î
-        Bubble21_Average_Absolute_Deviation=mean(abs(Bubble21));%Æ½¾ù¾ø¶ÔÆ«²î
+        %è®¡ç®—å¹³å‡ç»å¯¹åå·®
+        Bubble21_Average_Absolute_Deviation=mean(abs(Bubble21));%å¹³å‡ç»å¯¹åå·®
         
-        %Çñ¹ğÖ¥, ´óĞÍÑ­»·Á÷»¯´²»·ĞÎÂ¯ÌÅÆø¹ÌÁ÷¶¯ÌØĞÔCPFDÊıÖµÄ£ÄâºÍÊµÑéÑĞ¾¿, 2015, ÖĞ¹ú¿ÆÑ§ÔºÑĞ¾¿ÉúÔº(¹¤³ÌÈÈÎïÀíÑĞ¾¿Ëù).P43
-        %¼ÆËãÆ«¶È
+        %é‚±æ¡‚èŠ, å¤§å‹å¾ªç¯æµåŒ–åºŠç¯å½¢ç‚‰è†›æ°”å›ºæµåŠ¨ç‰¹æ€§CPFDæ•°å€¼æ¨¡æ‹Ÿå’Œå®éªŒç ”ç©¶, 2015, ä¸­å›½ç§‘å­¦é™¢ç ”ç©¶ç”Ÿé™¢(å·¥ç¨‹çƒ­ç‰©ç†ç ”ç©¶æ‰€).P43
+        %è®¡ç®—ååº¦
         Bubble20_Sk_sum=0;
         for j=1:Bubble20_length,
             Bubble20_Sk_sum=Bubble20_Sk_sum+Bubble21(j)^3;
         end
         Bubble20_Sk=Bubble20_Sk_sum/(N*Bubble20_std^3);
         
-        %Çñ¹ğÖ¥, ´óĞÍÑ­»·Á÷»¯´²»·ĞÎÂ¯ÌÅÆø¹ÌÁ÷¶¯ÌØĞÔCPFDÊıÖµÄ£ÄâºÍÊµÑéÑĞ¾¿, 2015, ÖĞ¹ú¿ÆÑ§ÔºÑĞ¾¿ÉúÔº(¹¤³ÌÈÈÎïÀíÑĞ¾¿Ëù).P43
-        %¼ÆËã·å¶È
+        %é‚±æ¡‚èŠ, å¤§å‹å¾ªç¯æµåŒ–åºŠç¯å½¢ç‚‰è†›æ°”å›ºæµåŠ¨ç‰¹æ€§CPFDæ•°å€¼æ¨¡æ‹Ÿå’Œå®éªŒç ”ç©¶, 2015, ä¸­å›½ç§‘å­¦é™¢ç ”ç©¶ç”Ÿé™¢(å·¥ç¨‹çƒ­ç‰©ç†ç ”ç©¶æ‰€).P43
+        %è®¡ç®—å³°åº¦
         Bubble20_K_sum=0;
         
         for j=1:Bubble20_length,
@@ -166,307 +164,307 @@ for i=1:1, %¶ÔÓ¦21¸ö¹¤¿ö
         
         Bubble20_K=Bubble20_K_sum/(N*Bubble20_std^4);
         
-        Bubble2_Temp=[Bubble20_mean,Bubble20_std,Bubble21_Average_Absolute_Deviation,Bubble20_Sk,Bubble20_K];%·Ö±ğÎªÆ½¾ùÖµ£¬±ê×¼²î£¬¾ø¶ÔÆ«²îÆ½¾ùÖµ£¬Æ«¶ÈSk£¬·å¶ÈK
-        Bubble2_sum=[Bubble2_sum;Bubble2_Temp];%»ã×Ü¼ÆËãµÄ½á¹û£¬Êä³öµ½ExcelµÄ´úÂëÔÚ×îºó£¬ÓÃÓÚ»ã×ÜºóÔÙÊä³ö
+        Bubble2_Temp=[Bubble20_mean,Bubble20_std,Bubble21_Average_Absolute_Deviation,Bubble20_Sk,Bubble20_K];%åˆ†åˆ«ä¸ºå¹³å‡å€¼ï¼Œæ ‡å‡†å·®ï¼Œç»å¯¹åå·®å¹³å‡å€¼ï¼Œååº¦Skï¼Œå³°åº¦K
+        Bubble2_sum=[Bubble2_sum;Bubble2_Temp];%æ±‡æ€»è®¡ç®—çš„ç»“æœï¼Œè¾“å‡ºåˆ°Excelçš„ä»£ç åœ¨æœ€åï¼Œç”¨äºæ±‡æ€»åå†è¾“å‡º
     end
     
-    %ÆµÆ×·ÖÎö
+    %é¢‘è°±åˆ†æ
     if Output_Frequency_Analysis==1,
-        y=fft(xn,N);%¸µÀïÒ¶±ä»»
+        y=fft(xn,N);%å‚…é‡Œå¶å˜æ¢
         mag=abs(y);
-        f=(0:length(y)-1)'*Fs/length(y);%ºá×ø±êÆµÂÊµÄ±í´ïÊ½Îªf=(0:M-1)*Fs/M;
+        f=(0:length(y)-1)'*Fs/length(y);%æ¨ªåæ ‡é¢‘ç‡çš„è¡¨è¾¾å¼ä¸ºf=(0:M-1)*Fs/M;
         frequency_data=[f(1:N/2),mag(1:N/2)];
         
-        m2={'ÆµÂÊ/Hz','·ùÖµ'};
+        m2={'é¢‘ç‡/Hz','å¹…å€¼'};
         xlswrite(Excel_outputpath_Frequency_Analysis_data,m2,name11,'A1');
-        disp(strcat('Excel_outputpath_Frequency_Analysis_data_Excelheader:',name11)); %ExcelÊı¾İ±íµÄ±íÍ·ÊäÈëÍê±Ï
+        disp(strcat('Excel_outputpath_Frequency_Analysis_data_Excelheader:',name11)); %Excelæ•°æ®è¡¨çš„è¡¨å¤´è¾“å…¥å®Œæ¯•
         
         xlswrite(Excel_outputpath_Frequency_Analysis_data,frequency_data,name11,'A2');
-        disp(strcat('Excel_outputpath_Frequency_Analysis_data_Exceldata:',name11)); %ExcelÊı¾İ±íµÄËùÓĞÊı¾İÊäÈëÍê±Ï
+        disp(strcat('Excel_outputpath_Frequency_Analysis_data_Exceldata:',name11)); %Excelæ•°æ®è¡¨çš„æ‰€æœ‰æ•°æ®è¾“å…¥å®Œæ¯•
         
         figure,
-        plot(f(1:N/2),mag(1:N/2),'LineWidth',2);%»æÖÆÆµÆ×Í¼
+        plot(f(1:N/2),mag(1:N/2),'LineWidth',2);%ç»˜åˆ¶é¢‘è°±å›¾
         %axis([0,25,0,40000])
-        title('ÆµÆ×Í¼');
-        xlabel('ÆµÂÊ/Hz');
-        ylabel('·ùÖµ');
+        title('é¢‘è°±å›¾');
+        xlabel('é¢‘ç‡/Hz');
+        ylabel('å¹…å€¼');
         grid on;
         
-        print(gcf,'-dtiff',[Excel_Output_Path_Image,'Frequency_Analysis_Image_',name11,'.tiff']);  %±£´ætiff¸ñÊ½µÄÍ¼Æ¬µ½Ö¸¶¨Â·¾¶
+        print(gcf,'-dtiff',[Excel_Output_Path_Image,'Frequency_Analysis_Image_',name11,'.tiff']);  %ä¿å­˜tiffæ ¼å¼çš„å›¾ç‰‡åˆ°æŒ‡å®šè·¯å¾„
         close all;
     end
     
-    %¹¦ÂÊÆ×ÃÜ¶È·ÖÎö
+    %åŠŸç‡è°±å¯†åº¦åˆ†æ
     if  Output_Power_Spectrum_Density_Analysis==1,
         switch PSD_Method,
-            case 1, %PSD_WELCH·½·¨(¸Ä½øµÄÖÜÆÚÍ¼¹¦ÂÊÆ×¹À¼Æ·½·¨)¡ª¡ªº£Ã÷´°
-                %MatlabÖĞ£¬º¯Êıpsd()ºÍº¯Êıpwelch()¾ù¿ÉÊµÏÖWelch·½·¨µÄ¹¦ÂÊÆ×¹À¼Æ£¬²Î¿¼½Ì²Ä£ºËæ»úĞÅºÅ·ÖÎö£¨µÚ3°æ£©Ö£Î¢£¬µç×Ó¹¤Òµ³ö°æÉç£¬2017Äê
+            case 1, %PSD_WELCHæ–¹æ³•(æ”¹è¿›çš„å‘¨æœŸå›¾åŠŸç‡è°±ä¼°è®¡æ–¹æ³•)â€”â€”æµ·æ˜çª—
+                %Matlabä¸­ï¼Œå‡½æ•°psd()å’Œå‡½æ•°pwelch()å‡å¯å®ç°Welchæ–¹æ³•çš„åŠŸç‡è°±ä¼°è®¡ï¼Œå‚è€ƒæ•™æï¼šéšæœºä¿¡å·åˆ†æï¼ˆç¬¬3ç‰ˆï¼‰éƒ‘å¾®ï¼Œç”µå­å·¥ä¸šå‡ºç‰ˆç¤¾ï¼Œ2017å¹´
                 
-                nfft=251; %FFT±ä»»µãÊı
-                Nseg=251; %·Ö¶Î¼ä¸ô
-                window1=hamming(length(xn)); %Ñ¡ÓÃµÄ´°¿Ú-º£Ã÷´°
-                noverlap=100; %·Ö¶ÎĞòÁĞÖØµşµÄ²ÉÑùµãÊı£¨³¤¶È£©
-                range='half'; %ÆµÂÊ¼ä¸ôÎª[0 Fs/2]£¬Ö»¼ÆËãÒ»°ëµÄÆµÂÊ
-                f=(0:Nseg/2)*Fs/Nseg; %ÆµÂÊÖá×ø±ê
+                nfft=251; %FFTå˜æ¢ç‚¹æ•°
+                Nseg=251; %åˆ†æ®µé—´éš”
+                window1=hamming(length(xn)); %é€‰ç”¨çš„çª—å£-æµ·æ˜çª—
+                noverlap=100; %åˆ†æ®µåºåˆ—é‡å çš„é‡‡æ ·ç‚¹æ•°ï¼ˆé•¿åº¦ï¼‰
+                range='half'; %é¢‘ç‡é—´éš”ä¸º[0 Fs/2]ï¼Œåªè®¡ç®—ä¸€åŠçš„é¢‘ç‡
+                f=(0:Nseg/2)*Fs/Nseg; %é¢‘ç‡è½´åæ ‡
                 
                 Sx1=psd(xn,Nseg,Fs,window1,noverlap,'none');
                 %Sx1=10*log10(Sx1);
                 Plot_Pxx11=Sx1;
                 Plot_Pxx12=10*log10(Sx1);
                 
-                Sx2=pwelch(xn,window1,noverlap,nfft,Fs,'oneside')*Fs/2; %pwelch()·µ»ØµÄµ¥±ß¹¦ÂÊÆ×Ğè³ËÒÔFs/2
+                Sx2=pwelch(xn,window1,noverlap,nfft,Fs,'oneside')*Fs/2; %pwelch()è¿”å›çš„å•è¾¹åŠŸç‡è°±éœ€ä¹˜ä»¥Fs/2
                 %Sx2=10*log10(Sx2);
                 Plot_Pxx21=Sx2;
                 Plot_Pxx22=10*log10(Sx2);
                 
-                window2=boxcar(length(xn));      %PSD_WELCH·½·¨¡ª¡ª¾ØĞÎ´°
+                window2=boxcar(length(xn));      %PSD_WELCHæ–¹æ³•â€”â€”çŸ©å½¢çª—
                 Sx3=pwelch(xn,window2,noverlap,N,Fs,'oneside')*Fs/2;
                 Plot_Pxx31=Sx3;
                 Plot_Pxx32=10*log10(Sx3);
                 
-                %»æÖÆ¹¦ÂÊÆ×ÇúÏßÍ¼£¨·Ç¶ÔÊı×ø±ê£©
+                %ç»˜åˆ¶åŠŸç‡è°±æ›²çº¿å›¾ï¼ˆéå¯¹æ•°åæ ‡ï¼‰
                 figure,
                 subplot(3,1,1),
                 plot(f,Sx1,'LineWidth',2);
                 grid on;
-                xlabel('ÆµÂÊ/Hz');
-                ylabel('¹¦ÂÊÆ×');
-                title('¹¦ÂÊÆ×-Welch·¨-psd()º¯Êı');
+                xlabel('é¢‘ç‡/Hz');
+                ylabel('åŠŸç‡è°±');
+                title('åŠŸç‡è°±-Welchæ³•-psd()å‡½æ•°');
                 
                 subplot(3,1,2),
-                plot(f,Plot_Pxx21,'LineWidth',2);  %»æÖÆ¹¦ÂÊÆ×
+                plot(f,Plot_Pxx21,'LineWidth',2);  %ç»˜åˆ¶åŠŸç‡è°±
                 %axis([0,25,0,300000])
-                xlabel('ÆµÂÊ/Hz');
-                ylabel('¹¦ÂÊÆ×');
-                title('¹¦ÂÊÆ×-Welch·¨-º£Ã÷´°-pwelch()º¯Êı');
+                xlabel('é¢‘ç‡/Hz');
+                ylabel('åŠŸç‡è°±');
+                title('åŠŸç‡è°±-Welchæ³•-æµ·æ˜çª—-pwelch()å‡½æ•°');
                 grid on
                 
                 subplot(3,1,3),
                 plot(f,Plot_Pxx31,'LineWidth',2);
                 %axis([0,25,0,300000]);
-                xlabel('ÆµÂÊ/Hz');
-                ylabel('¹¦ÂÊÆ×');
-                title('¹¦ÂÊÆ×-Welch·¨-¾ØĞÎ´°-pwelch()º¯Êı');
+                xlabel('é¢‘ç‡/Hz');
+                ylabel('åŠŸç‡è°±');
+                title('åŠŸç‡è°±-Welchæ³•-çŸ©å½¢çª—-pwelch()å‡½æ•°');
                 grid on
                 
-                print(gcf,'-dtiff',[Excel_Output_Path_Image,'Power_Spectrum_Density_Analysis_',name11,'_1.tiff'])   %±£´ætiff¸ñÊ½µÄÍ¼Æ¬µ½Ö¸¶¨Â·¾¶
+                print(gcf,'-dtiff',[Excel_Output_Path_Image,'Power_Spectrum_Density_Analysis_',name11,'_1.tiff'])   %ä¿å­˜tiffæ ¼å¼çš„å›¾ç‰‡åˆ°æŒ‡å®šè·¯å¾„
                 close all;
                 
                 data1_Pxx1=[f',Plot_Pxx21];
                 data2_Pxx1=[f',Plot_Pxx22];
                 
-                m3={'ÆµÂÊ/Hz','pwelch()·ùÖµ','ÆµÂÊ','pwelch()¶ÔÊıÖµ'};
+                m3={'é¢‘ç‡/Hz','pwelch()å¹…å€¼','é¢‘ç‡','pwelch()å¯¹æ•°å€¼'};
                 xlswrite(Excel_outputpath_Output_Power_Spectrum_Density_Analysis_data,m3,name11,'A1');
-                disp(strcat('Excel_outputpath_Output_Power_Spectrum_Density_Analysis_data1_Excelheader:',name11)); %ExcelÊı¾İ±íµÄ±íÍ·ÊäÈëÍê±Ï
+                disp(strcat('Excel_outputpath_Output_Power_Spectrum_Density_Analysis_data1_Excelheader:',name11)); %Excelæ•°æ®è¡¨çš„è¡¨å¤´è¾“å…¥å®Œæ¯•
                 
                 xlswrite(Excel_outputpath_Output_Power_Spectrum_Density_Analysis_data,data1_Pxx1,name11,'A2');
-                disp(strcat('Excel_outputpath_Output_Power_Spectrum_Density_Analysis_data1_Exceldata:',name11)); %ExcelÊı¾İ±íµÄËùÓĞÊı¾İÊäÈëÍê±Ï
+                disp(strcat('Excel_outputpath_Output_Power_Spectrum_Density_Analysis_data1_Exceldata:',name11)); %Excelæ•°æ®è¡¨çš„æ‰€æœ‰æ•°æ®è¾“å…¥å®Œæ¯•
                 
                 xlswrite(Excel_outputpath_Output_Power_Spectrum_Density_Analysis_data,data2_Pxx1,name11,'C2');
-                disp(strcat('Excel_outputpath_Output_Power_Spectrum_Density_Analysis_data2_Exceldata:',name11)); %ExcelÊı¾İ±íµÄËùÓĞÊı¾İÊäÈëÍê±Ï
+                disp(strcat('Excel_outputpath_Output_Power_Spectrum_Density_Analysis_data2_Exceldata:',name11)); %Excelæ•°æ®è¡¨çš„æ‰€æœ‰æ•°æ®è¾“å…¥å®Œæ¯•
                 
-                %»æÖÆ¹¦ÂÊÆ×ÇúÏßÍ¼£¨¶ÔÊı×ø±ê£©
+                %ç»˜åˆ¶åŠŸç‡è°±æ›²çº¿å›¾ï¼ˆå¯¹æ•°åæ ‡ï¼‰
                 figure,
                 subplot(3,1,1),
-                plot(f,Plot_Pxx12,'LineWidth',2);  %»æÖÆ¹¦ÂÊÆ×
+                plot(f,Plot_Pxx12,'LineWidth',2);  %ç»˜åˆ¶åŠŸç‡è°±
                 %axis([0,25,0,300000])
-                xlabel('ÆµÂÊ/Hz');
-                ylabel('¹¦ÂÊÆ×');
-                title('¹¦ÂÊÆ×-Welch·¨-psd()º¯Êı');
+                xlabel('é¢‘ç‡/Hz');
+                ylabel('åŠŸç‡è°±');
+                title('åŠŸç‡è°±-Welchæ³•-psd()å‡½æ•°');
                 grid on;
                 
                 subplot(3,1,2),
-                plot(f,Plot_Pxx22,'LineWidth',2);  %»æÖÆ¹¦ÂÊÆ×
+                plot(f,Plot_Pxx22,'LineWidth',2);  %ç»˜åˆ¶åŠŸç‡è°±
                 %axis([0,25,0,300000])
-                xlabel('ÆµÂÊ/Hz');
-                ylabel('¹¦ÂÊÆ×');
-                title('¹¦ÂÊÆ×-Welch·¨-º£Ã÷´°-pwelch()º¯Êı');
+                xlabel('é¢‘ç‡/Hz');
+                ylabel('åŠŸç‡è°±');
+                title('åŠŸç‡è°±-Welchæ³•-æµ·æ˜çª—-pwelch()å‡½æ•°');
                 grid on;
                 
                 subplot(3,1,3),
                 plot(f,Plot_Pxx32,'LineWidth',2);
                 %axis([0,25,0,300000]);
-                title('¹¦ÂÊÆ×-Welch·¨-¾ØĞÎ´°-pwelch()º¯Êı');
-                xlabel('ÆµÂÊ/Hz');
-                ylabel('¹¦ÂÊÆ×');
+                title('åŠŸç‡è°±-Welchæ³•-çŸ©å½¢çª—-pwelch()å‡½æ•°');
+                xlabel('é¢‘ç‡/Hz');
+                ylabel('åŠŸç‡è°±');
                 grid on;
                 
-                print(gcf,'-dtiff',[Excel_Output_Path_Image,'Power_Spectrum_Density_Analysis_Log_',name11,'_2.tiff'])   %±£´ætiff¸ñÊ½µÄÍ¼Æ¬µ½Ö¸¶¨Â·¾¶
+                print(gcf,'-dtiff',[Excel_Output_Path_Image,'Power_Spectrum_Density_Analysis_Log_',name11,'_2.tiff'])   %ä¿å­˜tiffæ ¼å¼çš„å›¾ç‰‡åˆ°æŒ‡å®šè·¯å¾„
                 close all;
                 
-                %ÆäÖĞ´°¿ÚµÄ³¤¶ÈN±íÊ¾Ã¿´Î´¦ÀíµÄ·Ö¶ÎÊı¾İ³¤¶È£¬NoverlapÊÇÖ¸ÏàÁÚÁ½¶ÎÊı¾İÖ®¼äµÄÖØµş²¿·Ö³¤¶È¡£
-                %NÔ½´óµÃµ½µÄ¹¦ÂÊÆ×·Ö±æÂÊÔ½¸ß(Ô½×¼È·)£¬µ«·½²î¼Ó´ó(¼°¹¦ÂÊÆ×ÇúÏß²»Ì«Æ½»¬)£»NÔ½Ğ¡£¬½á¹ûµÄ·½²î»á±äĞ¡£¬
-                %µ«¹¦ÂÊÆ×·Ö±æÂÊ½ÏµÍ(¹À¼Æ½á¹û²»Ì«×¼È·)¡£
-                %pwelchÀïÃæNFFT,¼´FFTµÄ¸öÊı£¬ÊÇ¿ÉÒÔ±ä»¯µÄ¡£µ«ÊÇ×î´ó³¤¶È²»ÄÜ³¬¹ıÃ¿Ò»¶ÎµÄµãÊı¡£
-                %µ±È»£¬ºÜ¶àÇé¿öÏÂÎÒÃÇ°ÑNFFTµÈÓÚÃ¿Ò»¶ÎµÄµãÊı£¬ÕâÑù¿ÉÒÔµÃµ½×î¸ßµÄÆµÓò·Ö±æÂÊ¡£
-                %Èç¹ûNFFT = Ã¿Ò»¶ÎµÄÒ»°ë£¬ÆµÓò·Ö±æÂÊµÍÒ»±¶¡£
+                %å…¶ä¸­çª—å£çš„é•¿åº¦Nè¡¨ç¤ºæ¯æ¬¡å¤„ç†çš„åˆ†æ®µæ•°æ®é•¿åº¦ï¼ŒNoverlapæ˜¯æŒ‡ç›¸é‚»ä¸¤æ®µæ•°æ®ä¹‹é—´çš„é‡å éƒ¨åˆ†é•¿åº¦ã€‚
+                %Nè¶Šå¤§å¾—åˆ°çš„åŠŸç‡è°±åˆ†è¾¨ç‡è¶Šé«˜(è¶Šå‡†ç¡®)ï¼Œä½†æ–¹å·®åŠ å¤§(åŠåŠŸç‡è°±æ›²çº¿ä¸å¤ªå¹³æ»‘)ï¼›Nè¶Šå°ï¼Œç»“æœçš„æ–¹å·®ä¼šå˜å°ï¼Œ
+                %ä½†åŠŸç‡è°±åˆ†è¾¨ç‡è¾ƒä½(ä¼°è®¡ç»“æœä¸å¤ªå‡†ç¡®)ã€‚
+                %pwelché‡Œé¢NFFT,å³FFTçš„ä¸ªæ•°ï¼Œæ˜¯å¯ä»¥å˜åŒ–çš„ã€‚ä½†æ˜¯æœ€å¤§é•¿åº¦ä¸èƒ½è¶…è¿‡æ¯ä¸€æ®µçš„ç‚¹æ•°ã€‚
+                %å½“ç„¶ï¼Œå¾ˆå¤šæƒ…å†µä¸‹æˆ‘ä»¬æŠŠNFFTç­‰äºæ¯ä¸€æ®µçš„ç‚¹æ•°ï¼Œè¿™æ ·å¯ä»¥å¾—åˆ°æœ€é«˜çš„é¢‘åŸŸåˆ†è¾¨ç‡ã€‚
+                %å¦‚æœNFFT = æ¯ä¸€æ®µçš„ä¸€åŠï¼Œé¢‘åŸŸåˆ†è¾¨ç‡ä½ä¸€å€ã€‚
             case 2,
-                %ÕâÀï¿ÉÒÔÌí¼ÓÆäËü¼ÆËã¹¦ÂÊÆ×µÄ·½·¨
+                %è¿™é‡Œå¯ä»¥æ·»åŠ å…¶å®ƒè®¡ç®—åŠŸç‡è°±çš„æ–¹æ³•
         end
     end
     
-    %Ğ¡²¨·ÖÎö
+    %å°æ³¢åˆ†æ
     if Output_Wavelet_Analysis==1,
-        [cA,cD]=wavedec(xn,4,'db2');%%ÀûÓÃdb2Ğ¡²¨¶ÔĞÅºÅ½øĞĞ4²ã·Ö½â£»·Ö±ğ¶ÔÓ¦µÄÆµÂÊÎª£º25¡ª¡ª50Hz£»12.5¡ª¡ª25Hz£»6.25¡ª¡ª12.5Hz£»3.125¡ª¡ª6.25Hz£»0¡ª¡ª3.125Hz£»
-        %[cA,cD]=wavedec(X,1,¡¯wname¡¯)ÖĞ·µ»ØµÄ½üËÆºÍÏ¸½Ú¶¼´æ·ÅÔÚcAÖĞ£¬¼´C=[cA,cD]£¬L´æ·ÅÊÇ½üËÆºÍ¸÷½×Ï¸½ÚÏµÊı¶ÔÓ¦µÄ³¤¶È
+        [cA,cD]=wavedec(xn,4,'db2');%%åˆ©ç”¨db2å°æ³¢å¯¹ä¿¡å·è¿›è¡Œ4å±‚åˆ†è§£ï¼›åˆ†åˆ«å¯¹åº”çš„é¢‘ç‡ä¸ºï¼š25â€”â€”50Hzï¼›12.5â€”â€”25Hzï¼›6.25â€”â€”12.5Hzï¼›3.125â€”â€”6.25Hzï¼›0â€”â€”3.125Hzï¼›
+        %[cA,cD]=wavedec(X,1,â€™wnameâ€™)ä¸­è¿”å›çš„è¿‘ä¼¼å’Œç»†èŠ‚éƒ½å­˜æ”¾åœ¨cAä¸­ï¼Œå³C=[cA,cD]ï¼ŒLå­˜æ”¾æ˜¯è¿‘ä¼¼å’Œå„é˜¶ç»†èŠ‚ç³»æ•°å¯¹åº”çš„é•¿åº¦
         
-        %ĞÅºÅÖØ¹¹
-        %a4=wrcoef('type',cA,cD,'wname',N); %type=aÊÇ¶ÔµÍÆµ²¿·Ö½øĞĞÖØ¹¹£»type=dÊÇ¶Ô¸ßÆµ²¿·Ö½øĞĞÖØ¹¹£¬NÎªĞÅºÅµÄ²ãÊı
+        %ä¿¡å·é‡æ„
+        %a4=wrcoef('type',cA,cD,'wname',N); %type=aæ˜¯å¯¹ä½é¢‘éƒ¨åˆ†è¿›è¡Œé‡æ„ï¼›type=dæ˜¯å¯¹é«˜é¢‘éƒ¨åˆ†è¿›è¡Œé‡æ„ï¼ŒNä¸ºä¿¡å·çš„å±‚æ•°
         
-        a4=wrcoef('a',cA,cD,'db2',4); %0-3.125Hz£¬    ÖØ¹¹µÚ4²ãµÍÆµĞÅºÅ
-        d4=wrcoef('d',cA,cD,'db2',4); %3.125-6.25Hz£¬ ÖØ¹¹µÚ4²ã¸ßÆµĞÅºÅ
-        d3=wrcoef('d',cA,cD,'db2',3); %6.25-12.5Hz£¬  ÖØ¹¹µÚ3²ã¸ßÆµĞÅºÅ
-        d2=wrcoef('d',cA,cD,'db2',2); %12.5-25Hz£¬    ÖØ¹¹µÚ2²ã¸ßÆµĞÅºÅ
-        d1=wrcoef('d',cA,cD,'db2',1); %25-50Hz£¬      ÖØ¹¹µÚ1²ã¸ßÆµĞÅºÅ
+        a4=wrcoef('a',cA,cD,'db2',4); %0-3.125Hzï¼Œ    é‡æ„ç¬¬4å±‚ä½é¢‘ä¿¡å·
+        d4=wrcoef('d',cA,cD,'db2',4); %3.125-6.25Hzï¼Œ é‡æ„ç¬¬4å±‚é«˜é¢‘ä¿¡å·
+        d3=wrcoef('d',cA,cD,'db2',3); %6.25-12.5Hzï¼Œ  é‡æ„ç¬¬3å±‚é«˜é¢‘ä¿¡å·
+        d2=wrcoef('d',cA,cD,'db2',2); %12.5-25Hzï¼Œ    é‡æ„ç¬¬2å±‚é«˜é¢‘ä¿¡å·
+        d1=wrcoef('d',cA,cD,'db2',1); %25-50Hzï¼Œ      é‡æ„ç¬¬1å±‚é«˜é¢‘ä¿¡å·
         
-        wavelet_sum_signals=[t',a4,d4,d3,d2,d1,xn];%×¢ÒâÕâÀïµÄtÊÇĞĞÏòÁ¿£¬Ğè×ª»»ÎªÁĞÏòÁ¿
+        wavelet_sum_signals=[t',a4,d4,d3,d2,d1,xn];%æ³¨æ„è¿™é‡Œçš„tæ˜¯è¡Œå‘é‡ï¼Œéœ€è½¬æ¢ä¸ºåˆ—å‘é‡
         
         m5={'t','a4','d4','d3','d2','d1','xn'};
         xlswrite(Excel_Outputpath_Wavelet_Sum_data,m5,name11,'A1');
-        disp(strcat('Excel_Outputpath_Wavelet_Sum_data_Excelheader:',name11)); %ExcelÊı¾İ±íµÄ±íÍ·ÊäÈëÍê±Ï
+        disp(strcat('Excel_Outputpath_Wavelet_Sum_data_Excelheader:',name11)); %Excelæ•°æ®è¡¨çš„è¡¨å¤´è¾“å…¥å®Œæ¯•
         
         xlswrite(Excel_Outputpath_Wavelet_Sum_data,wavelet_sum_signals,name11,'A2');
-        disp(strcat('Excel_Outputpath_Wavelet_Sum_data_Exceldata:',name11)); %ExcelÊı¾İ±íµÄËùÓĞÊı¾İÊäÈëÍê±Ï
+        disp(strcat('Excel_Outputpath_Wavelet_Sum_data_Exceldata:',name11)); %Excelæ•°æ®è¡¨çš„æ‰€æœ‰æ•°æ®è¾“å…¥å®Œæ¯•
         
-        %Êä³ö¸÷²ãµÄĞÅºÅĞÅÏ¢
+        %è¾“å‡ºå„å±‚çš„ä¿¡å·ä¿¡æ¯
         figure,
         subplot(6,1,1),
         plot(t,a4,'linewidth',2);
         %axis([0,5,-200,200]);
         ylabel('a4');
-        grid on;%µÚ4²ãµÍÆµĞÅºÅ
+        grid on;%ç¬¬4å±‚ä½é¢‘ä¿¡å·
         
         subplot(6,1,2),
         plot(t,d4,'linewidth',2);
         %axis([0,5,-500,500]);
         ylabel('d4');
-        grid on;%µÚ4²ã¸ßÆµĞÅºÅ
+        grid on;%ç¬¬4å±‚é«˜é¢‘ä¿¡å·
         
         subplot(6,1,3),
         plot(t,d3,'linewidth',2);
         %axis([0,5,-1000,1000]);
         ylabel('d3');
-        grid on;%µÚ3²ã¸ßÆµĞÅºÅ
+        grid on;%ç¬¬3å±‚é«˜é¢‘ä¿¡å·
         
         subplot(6,1,4),
         plot(t,d2,'linewidth',2);
         %axis([0,5,-1000,1000]);
         ylabel('d2');
-        grid on;%µÚ2²ã¸ßÆµĞÅºÅ
+        grid on;%ç¬¬2å±‚é«˜é¢‘ä¿¡å·
         
         subplot(6,1,5),
         plot(t,d1,'linewidth',2);
         %axis([0,5,-200,200]);
         ylabel('d1');
-        grid on;%µÚ1²ã¸ßÆµĞÅºÅ
+        grid on;%ç¬¬1å±‚é«˜é¢‘ä¿¡å·
         
         subplot(6,1,6),
         plot(t,xn,'linewidth',2);
         %axis([0,5,-1000,1000]);
         ylabel('xn');
-        grid on;%Ô­Ê¼ĞÅºÅ
+        grid on;%åŸå§‹ä¿¡å·
         xlabel('t/s');
         
-        print(gcf,'-dtiff',[Excel_Output_Path_Image,'Wavelet_Analysis_',name11,'.tiff'])   %±£´ætiff¸ñÊ½µÄÍ¼Æ¬µ½Ö¸¶¨Â·¾¶
+        print(gcf,'-dtiff',[Excel_Output_Path_Image,'Wavelet_Analysis_',name11,'.tiff'])   %ä¿å­˜tiffæ ¼å¼çš„å›¾ç‰‡åˆ°æŒ‡å®šè·¯å¾„
         close all;
         
-        %ĞÅºÅµÄÄÜÁ¿¼ÆËã
-        [Ea,Ed]=wenergy(cA,cD);%EaÏÔÊ¾µÍÆµÄÜÁ¿°Ù·Ö±È£»%EdÏÔÊ¾¸ßÆµÄÜÁ¿°Ù·Ö±È
-        Wavelet_Energy_Distribution=[Ed,Ea];%Ë³ĞòÎªd1,d2,d3,d4,a4
+        %ä¿¡å·çš„èƒ½é‡è®¡ç®—
+        [Ea,Ed]=wenergy(cA,cD);%Eaæ˜¾ç¤ºä½é¢‘èƒ½é‡ç™¾åˆ†æ¯”ï¼›%Edæ˜¾ç¤ºé«˜é¢‘èƒ½é‡ç™¾åˆ†æ¯”
+        Wavelet_Energy_Distribution=[Ed,Ea];%é¡ºåºä¸ºd1,d2,d3,d4,a4
         Wavelet_Energy_Distribution_sum=[Wavelet_Energy_Distribution_sum;Wavelet_Energy_Distribution];
     end
     
-    %×ÔÏà¹Øº¯Êı¼ÆËã
+    %è‡ªç›¸å…³å‡½æ•°è®¡ç®—
     if Output_AutoCorrelation_Function==1,
-        [acor,lag] = xcorr(xn,'unbiased');%ÇóÈ¡»¥Ïà¹Øº¯Êı£¬lag³ÙÑÓ²½Êı£¬acorÏà¹ØÏµÊı
+        [acor,lag] = xcorr(xn,'unbiased');%æ±‚å–äº’ç›¸å…³å‡½æ•°ï¼Œlagè¿Ÿå»¶æ­¥æ•°ï¼Œacorç›¸å…³ç³»æ•°
         
-        lag_t=lag(251:501)*dt;%ÎªĞĞÏòÁ¿
-        acor_t=acor(251:501);%ÎªÁĞÏòÁ¿
+        lag_t=lag(251:501)*dt;%ä¸ºè¡Œå‘é‡
+        acor_t=acor(251:501);%ä¸ºåˆ—å‘é‡
         AutoCorrelation_Function_data=[lag_t',acor_t];
         
-        m4={'³ÙÑÓÊ±¼ä','Ïà¹ØÏµÊı'};
+        m4={'è¿Ÿå»¶æ—¶é—´','ç›¸å…³ç³»æ•°'};
         xlswrite(Excel_outputpath_AutoCorrelation_Function_data,m4,name11,'A1');
-        disp(strcat('Excel_outputpath_AutoCorrelation_Function_data_Excelheader:',name11)); %ExcelÊı¾İ±íµÄ±íÍ·ÊäÈëÍê±Ï
+        disp(strcat('Excel_outputpath_AutoCorrelation_Function_data_Excelheader:',name11)); %Excelæ•°æ®è¡¨çš„è¡¨å¤´è¾“å…¥å®Œæ¯•
         
         xlswrite(Excel_outputpath_AutoCorrelation_Function_data,AutoCorrelation_Function_data,name11,'A2');
-        disp(strcat('Excel_outputpath_Output_AutoCorrelation_Function_data_Exceldata:',name11)); %ExcelÊı¾İ±íµÄËùÓĞÊı¾İÊäÈëÍê±Ï
+        disp(strcat('Excel_outputpath_Output_AutoCorrelation_Function_data_Exceldata:',name11)); %Excelæ•°æ®è¡¨çš„æ‰€æœ‰æ•°æ®è¾“å…¥å®Œæ¯•
         
         figure,
         plot(lag(251:501)*dt,acor(251:501),'LineWidth',2);
-        title('×ÔÏà¹ØÏµÊı'); xlabel('³ÙÑÓÊ±¼ä/s'); ylabel('×ÔÏà¹ØÏµÊı');
+        title('è‡ªç›¸å…³ç³»æ•°'); xlabel('è¿Ÿå»¶æ—¶é—´/s'); ylabel('è‡ªç›¸å…³ç³»æ•°');
         %axis([0,5,-100000,100000]);
         grid on;
         
         acor2=abs(acor);
-        [A_max,L_max] = max(acor2);%Çó×î´ó»¥Ïà¹ØÖµ¶ÔÓ¦µÄÖµAmºÍË÷ÒıÖµLm
-        Delay = lag(L_max)*dt; %³ÙÑÓÊ±¼ätimedelay
-        text(Delay,A_max,['(',num2str(Delay),',',num2str(A_max),')'],'color','b');%±ê³ö×î´óÖµ
+        [A_max,L_max] = max(acor2);%æ±‚æœ€å¤§äº’ç›¸å…³å€¼å¯¹åº”çš„å€¼Amå’Œç´¢å¼•å€¼Lm
+        Delay = lag(L_max)*dt; %è¿Ÿå»¶æ—¶é—´timedelay
+        text(Delay,A_max,['(',num2str(Delay),',',num2str(A_max),')'],'color','b');%æ ‡å‡ºæœ€å¤§å€¼
         
-        print(gcf,'-dtiff',[Excel_Output_Path_Image,'AutoCorrelation_Function_',name11,'.tiff']);   %±£´ætiff¸ñÊ½µÄÍ¼Æ¬µ½Ö¸¶¨Â·¾¶
+        print(gcf,'-dtiff',[Excel_Output_Path_Image,'AutoCorrelation_Function_',name11,'.tiff']);   %ä¿å­˜tiffæ ¼å¼çš„å›¾ç‰‡åˆ°æŒ‡å®šè·¯å¾„
         close all;
         
     end
     
-    %¶¨Òå¹¹Ôì±íÍ·ĞÅÏ¢
+    %å®šä¹‰æ„é€ è¡¨å¤´ä¿¡æ¯
     Excel_title{i,1}=name11;
-    count=count+1,%¼ÆÊı
+    count=count+1,%è®¡æ•°
 end
 
 if i==21,
-    %Ô­Ê¼ĞÅºÅ
+    %åŸå§‹ä¿¡å·
     if Output_Original_Signal==1,
         
     end
     
-    % Í³¼ÆĞÅÏ¢¼ÆËã£¬°üÀ¨Æ½¾ùÖµ£¬±ê×¼²î£¬Æ«¶È£¬·å¶È
+    % ç»Ÿè®¡ä¿¡æ¯è®¡ç®—ï¼ŒåŒ…æ‹¬å¹³å‡å€¼ï¼Œæ ‡å‡†å·®ï¼Œååº¦ï¼Œå³°åº¦
     if Output_Statistical_Information==1,
-        %±íÍ·¼°¹¤¿öĞÅÏ¢
-        Case_m={'¹¤¿öÃû³Æ','Æ½¾ùÖµ','±ê×¼²î','Æ½¾ù¾ø¶ÔÆ«²î','Æ«¶ÈSk','·å¶ÈK'};
+        %è¡¨å¤´åŠå·¥å†µä¿¡æ¯
+        Case_m={'å·¥å†µåç§°','å¹³å‡å€¼','æ ‡å‡†å·®','å¹³å‡ç»å¯¹åå·®','ååº¦Sk','å³°åº¦K'};
         E22={Case_m};
         E21={Excel_title};
         
-        %% Êä³öÊı¾İ¼°±íÍ·¹¤¿öĞÅÏ¢1
-        %¹¹½¨±íÍ·
+        %% è¾“å‡ºæ•°æ®åŠè¡¨å¤´å·¥å†µä¿¡æ¯1
+        %æ„å»ºè¡¨å¤´
         xlswrite(Excel_outputpath_Statistical_Information_data,E22{1,1},num2str(numi),'A1');
-        disp('Excelheader output is OK!'); %ExcelÊı¾İ±íµÄ±íÍ·ÊäÈëÍê±Ï
+        disp('Excelheader output is OK!'); %Excelæ•°æ®è¡¨çš„è¡¨å¤´è¾“å…¥å®Œæ¯•
         
         xlswrite(Excel_outputpath_Statistical_Information_data,E21{1,1},num2str(numi),'A2');
-        disp('Case_name output is OK!'); %ExcelÊı¾İ±íµÄ±íÍ·ÊäÈëÍê±Ï
+        disp('Case_name output is OK!'); %Excelæ•°æ®è¡¨çš„è¡¨å¤´è¾“å…¥å®Œæ¯•
         
         xlswrite(Excel_outputpath_Statistical_Information_data,Bubble2_sum,num2str(numi),'B2');
-        disp('Case_data output is OK!'); %ExcelÊı¾İ±íµÄ±íÍ·ÊäÈëÍê±Ï
+        disp('Case_data output is OK!'); %Excelæ•°æ®è¡¨çš„è¡¨å¤´è¾“å…¥å®Œæ¯•
     end
     
-    % ÆµÆ×·ÖÎö
+    % é¢‘è°±åˆ†æ
     if Output_Frequency_Analysis==1,
         
     end
     
-    % ¹¦ÂÊÆ×ÃÜ¶È·ÖÎö
+    % åŠŸç‡è°±å¯†åº¦åˆ†æ
     if Output_Power_Spectrum_Density_Analysis==1,
         
     end
     
-    % Ğ¡²¨·ÖÎö
+    % å°æ³¢åˆ†æ
     if Output_Wavelet_Analysis==1,
-        %±íÍ·¼°¹¤¿öĞÅÏ¢
-        Case_m={'¹¤¿öÃû³Æ','d1','d2','d3','d4','a4'};
+        %è¡¨å¤´åŠå·¥å†µä¿¡æ¯
+        Case_m={'å·¥å†µåç§°','d1','d2','d3','d4','a4'};
         E22={Case_m};
         E21={Excel_title};
         
-        %% Êä³öÊı¾İ¼°±íÍ·¹¤¿öĞÅÏ¢
-        %¹¹½¨±íÍ·
+        %% è¾“å‡ºæ•°æ®åŠè¡¨å¤´å·¥å†µä¿¡æ¯
+        %æ„å»ºè¡¨å¤´
         xlswrite(Excel_outputpath_Wavelet_Analysis_data,E22{1,1},num2str(numi),'A1');
-        disp('Excelheader output is OK!'); %ExcelÊı¾İ±íµÄ±íÍ·ÊäÈëÍê±Ï
+        disp('Excelheader output is OK!'); %Excelæ•°æ®è¡¨çš„è¡¨å¤´è¾“å…¥å®Œæ¯•
         
         xlswrite(Excel_outputpath_Wavelet_Analysis_data,E21{1,1},num2str(numi),'A2');
-        disp('Case_name output is OK!'); %ExcelÊı¾İ±íµÄ±íÍ·ÊäÈëÍê±Ï
+        disp('Case_name output is OK!'); %Excelæ•°æ®è¡¨çš„è¡¨å¤´è¾“å…¥å®Œæ¯•
         
         xlswrite(Excel_outputpath_Wavelet_Analysis_data,Wavelet_Energy_Distribution_sum,num2str(numi),'B2');
-        disp('Case_data output is OK!'); %ExcelÊı¾İ±íµÄ±íÍ·ÊäÈëÍê±Ï
+        disp('Case_data output is OK!'); %Excelæ•°æ®è¡¨çš„è¡¨å¤´è¾“å…¥å®Œæ¯•
     end
     
-    % ×ÔÏà¹Øº¯Êı¼ÆËã
+    % è‡ªç›¸å…³å‡½æ•°è®¡ç®—
     if Output_AutoCorrelation_Function ==1,
         
     end
